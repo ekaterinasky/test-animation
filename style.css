@@ -1,3 +1,9 @@
+:root {
+	--base-size: 1vw;
+	--min-font: 16px;
+	--max-font: 110px;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -8,7 +14,7 @@ body {
 
 .container {
 	width: 100%;
-	padding: 50px 0px 20px 0px;
+	padding: clamp(20px, 5vw, 50px) 0 clamp(10px, 2vw, 20px) 0;
 	box-sizing: border-box;
 }
 
@@ -17,22 +23,23 @@ body {
 	align-items: center;
 	margin-bottom: 0;
 	position: relative;
+	gap: 0.5vw;
 }
 
 .text {
 	flex-shrink: 0;
-	font-size: 110px;
+	font-size: clamp(1.5rem, 6vw, 6rem);
 	line-height: 1.2;
 	white-space: nowrap;
-	padding: 0 20px;
-	margin-right: 10px;
+	padding: 0 clamp(0.5rem, 1vw, 1.25rem);
 }
 
 .video-block {
 	flex-grow: 1;
-	height: 65px;
+	height: clamp(20px, 6vw, 65px);
 	position: relative;
 	overflow: hidden;
+	min-width: 20vw;
 }
 
 .video-block video {
@@ -46,57 +53,40 @@ body {
 	object-position: center;
 }
 
-.video-block__part1 video {
+.video-block-part1 video {
 	object-position: 0 10%;
 }
 
-.video-block__part2 video {
+.video-block-part2 video {
 	object-position: 0 30%;
 }
 
-.video-block__part3 video {
+.video-block-part3 video {
 	object-position: 0 50%;
 }
 
-.video-block__part4 video {
+.video-block-part4 video {
 	object-position: 0 70%;
 }
 
-/*adaptive*/
-@media (max-width: 1024px) {
-	.text {
-		font-size: 64px;
-		padding: 0 15px;
-	}
-
-	.video-block {
-		height: 40px;
-	}
-}
-
-@media (max-width: 768px) {
-	.text {
-		font-size: 48px;
-		padding: 0 10px;
-	}
-
-	.video-block {
-		height: 30px;
-	}
-}
-
+/* adaptive */
 @media (max-width: 480px) {
-	.text-wrapper {
+	.line {
 		flex-wrap: wrap;
 		justify-content: center;
+		gap: 0.2rem;
+	}
+
+	.video-placeholder {
+		width: 100%;
+		min-width: auto;
+		order: -1;
+		margin-bottom: 0.5rem;
 	}
 
 	.text {
-		font-size: 32px;
-		padding: 0 5px;
-	}
-
-	.video-block {
-		height: 20px;
+		white-space: normal;
+		text-align: center;
+		padding: 0.2rem 0;
 	}
 }
